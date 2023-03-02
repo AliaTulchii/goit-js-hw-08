@@ -10,9 +10,11 @@ const textarea = document.querySelector('textarea');
 form.addEventListener('submit', onFormSubmit);
 form.addEventListener('input', throttle(onFormInput, 500));
 
-populateForm();
 
-const formData = {};
+
+let formData = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+
+populateForm();
 
 function onFormSubmit(evt) {
     evt.preventDefault();
@@ -39,12 +41,10 @@ function onFormInput(evt) {
 
 
 function populateForm() {
-    const savedData = localStorage.getItem(STORAGE_KEY);
-    
-
-    if (savedData) {
-        input.value = savedData.email;
-        textarea.value = savedData.message;
+    if (formData) {
+        let { email, message } = form.elements;
+        email.value = formData.email || '';
+        message.value = formData.message || '';
     }
 }
 
