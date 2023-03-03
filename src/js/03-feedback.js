@@ -21,7 +21,7 @@ function onFormSubmit(evt) {
 
 
     if (input.value == '' || textarea.value == '') {
-        return alert(`Будь ласка, заповніть всі обов'язкові поля.`);
+        return;
     }
 
     console.log({ email: input.value, message: textarea.value });
@@ -47,4 +47,3 @@ function populateForm() {
         message.value = formData.message || '';
     }
 }
-
