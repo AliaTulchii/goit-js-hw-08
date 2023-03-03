@@ -12,7 +12,7 @@ form.addEventListener('input', throttle(onFormInput, 500));
 
 
 
-let formData = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+const formData = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
 
 populateForm();
 
@@ -21,7 +21,7 @@ function onFormSubmit(evt) {
 
 
     if (input.value == '' || textarea.value == '') {
-        return;
+        return alert(`Будь ласка, заповніть всі обов'язкові поля.`);
     }
 
     console.log({ email: input.value, message: textarea.value });
@@ -42,8 +42,8 @@ function onFormInput(evt) {
 
 function populateForm() {
     if (formData) {
-        let { email, message } = form.elements;
-        email.value = formData.email || '';
-        message.value = formData.message || '';
+        
+        input.value = formData.email || '';
+        textarea.value = formData.message || '';
     }
 }
